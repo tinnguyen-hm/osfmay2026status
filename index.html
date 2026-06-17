@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSF × Hike · Monthly Update · May 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0B2A5B;
+    --blue:   #1F6FEB;
+    --bluelt: #EAF1FE;
+    --ink:    #1A2433;
+    --slate:  #5B6675;
+    --line:   #DCE3ED;
+    --white:  #FFFFFF;
+    --amber:  #E8833A;
+    --green:  #1F9D6B;
+    --paper:  #F6F8FB;
+    --display: 'EB Garamond', Georgia, serif;
+    --body:    'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 2rem;
+    height: 48px;
+  }
+  nav .logo { font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: .12em; color: var(--blue); text-transform: uppercase; white-space: nowrap; }
+  nav .nav-links { display: flex; gap: 1.5rem; }
+  nav .nav-links a { font-size: 12px; color: var(--slate); text-decoration: none; white-space: nowrap; }
+  nav .nav-links a:hover { color: var(--blue); }
+
+  /* ── SECTIONS ── */
+  section { padding: 4rem 2rem; max-width: 960px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--line); }
+
+  /* ── EYEBROW + HEADER ── */
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: .5rem; }
+  .section-title { font-family: var(--display); font-size: clamp(1.6rem, 3.5vw, 2.1rem); font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: .5rem; }
+  .section-sub { font-size: 13px; font-style: italic; color: var(--slate); margin-bottom: 2.5rem; }
+
+  /* ── TITLE SLIDE ── */
+  #title { background: var(--navy); padding: 5rem 2rem 4.5rem; }
+  #title .inner { max-width: 960px; margin: 0 auto; }
+  #title .tag { font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #8FB4F0; margin-bottom: 1.25rem; }
+  #title h1 { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
+  #title .sub { font-size: 15px; color: #C9D8F2; max-width: 620px; margin-bottom: 3rem; }
+  #title .prepared { font-size: 12px; color: #7E9BCB; }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-stack { display: flex; flex-direction: column; gap: 1rem; }
+  .insight-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0 1rem;
+    align-items: start;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  }
+  .insight-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--bluelt);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .insight-icon svg { width: 17px; height: 17px; }
+  .insight-head { font-family: var(--display); font-size: 1.05rem; font-weight: 700; margin-bottom: .3rem; }
+  .insight-head.blue { color: var(--blue); }
+  .insight-head.green { color: var(--green); }
+  .insight-body { font-size: 13.5px; color: var(--ink); }
+
+  /* ── FUNNEL ── */
+  .funnel { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+  .funnel-row { display: grid; grid-template-columns: 28px 1fr; gap: 0 .75rem; align-items: start; }
+  .funnel-label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: .35rem; }
+  .funnel-label span { font-weight: 400; font-style: italic; color: var(--slate); font-size: 11px; margin-left: .4rem; }
+  .bar-track { background: #EEF2F7; border-radius: 5px; height: 34px; position: relative; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 5px; display: flex; align-items: center; padding-left: 12px; }
+  .bar-fill span { font-family: var(--display); font-weight: 700; font-size: 1rem; color: var(--white); }
+  .bar-blue { background: var(--blue); }
+  .bar-green { background: var(--green); }
+
+  /* ── MINI STATS ── */
+  .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
+  .mini-card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; }
+  .mini-num { font-family: var(--display); font-size: 1.75rem; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: .35rem; }
+  .mini-num.amber { color: var(--amber); }
+  .mini-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .mini-sub { font-size: 10.5px; color: var(--slate); margin-top: .15rem; }
+
+  /* ── PERF LAYOUT (left funnel, right chart+table) ── */
+  .perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+  @media (max-width: 680px) { .perf-grid { grid-template-columns: 1fr; } }
+
+  /* ── CHART (CSS-only sparkline) ── */
+  .chart-label { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: .6rem; }
+  .chart-wrap { position: relative; height: 120px; margin-bottom: .35rem; }
+  svg.sparkline { width: 100%; height: 100%; overflow: visible; }
+  .chart-note { font-size: 10px; font-style: italic; color: var(--slate); }
+
+  /* ── FACILITIES TABLE ── */
+  .fac-label { font-size: 12.5px; font-weight: 600; color: var(--ink); margin: 1.25rem 0 .5rem; }
+  .fac-row { display: grid; grid-template-columns: 1fr 80px 36px; align-items: center; gap: .5rem; margin-bottom: .45rem; }
+  .fac-name { font-size: 11.5px; color: var(--ink); }
+  .fac-bar-wrap { background: #EEF2F7; border-radius: 3px; height: 8px; }
+  .fac-bar { background: var(--blue); height: 8px; border-radius: 3px; }
+  .fac-val { font-size: 11px; font-weight: 600; color: var(--slate); text-align: right; }
+
+  /* ── JUNE PREVIEW ── */
+  .june-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .85rem; margin-bottom: 1.5rem; }
+  @media (max-width: 600px) { .june-grid { grid-template-columns: repeat(2, 1fr); } }
+  .june-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1.1rem .9rem; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  }
+  .june-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--bluelt); display: flex; align-items: center; justify-content: center; margin: 0 auto .6rem; }
+  .june-icon svg { width: 14px; height: 14px; }
+  .june-num { font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1; }
+  .june-lbl { font-size: 11.5px; font-weight: 600; color: var(--ink); margin-top: .25rem; }
+  .june-sub { font-size: 10px; font-style: italic; color: var(--slate); margin-top: .1rem; }
+  .june-note { background: var(--bluelt); border: 1px solid #C9DBF7; border-radius: 10px; padding: 1rem 1.25rem; font-size: 13px; color: var(--ink); }
+
+  /* ── ACTION ITEMS ── */
+  .action-stack { display: flex; flex-direction: column; gap: .9rem; }
+  .action-row {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 9px;
+    padding: 1rem 1.2rem;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    gap: .75rem; align-items: center;
+  }
+  @media (max-width: 600px) { .action-row { grid-template-columns: 1fr; } }
+  .action-title { font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .status-chip { border-radius: 20px; padding: .2rem .75rem; font-size: 10.5px; font-weight: 700; color: var(--white); white-space: nowrap; text-align: center; }
+  .status-done { background: var(--green); }
+  .status-progress { background: var(--amber); }
+  .status-underway { background: var(--blue); }
+  .action-detail { font-size: 12.5px; color: var(--ink); }
+
+  /* ── DISCUSSION ── */
+  .discussion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 660px) { .discussion-grid { grid-template-columns: 1fr; } }
+  .disc-card {
+    border-radius: 10px; padding: 1.4rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  }
+  .disc-card.light { background: var(--white); border: 1px solid var(--line); }
+  .disc-card.dark  { background: var(--navy); }
+  .disc-header { display: flex; align-items: center; gap: .65rem; margin-bottom: 1rem; }
+  .disc-icon { width: 30px; height: 30px; border-radius: 50%; background: var(--bluelt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .disc-icon.dk { background: #13386F; }
+  .disc-icon svg { width: 14px; height: 14px; }
+  .disc-title { font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--ink); }
+  .disc-title.white { color: var(--white); }
+  .disc-body { font-size: 12.5px; color: var(--ink); margin-bottom: .9rem; }
+  .disc-body.light-text { color: #C9D8F2; }
+  .disc-q-label { font-size: 11px; font-weight: 700; color: var(--blue); margin-bottom: .5rem; text-transform: uppercase; letter-spacing: .06em; }
+  .disc-q-label.light { color: #8FB4F0; }
+  .disc-qs { list-style: disc; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
+  .disc-qs li { font-size: 12px; color: var(--ink); }
+  .disc-qs.light-qs li { color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--white); border-top: 1px solid var(--line); padding: 1.5rem 2rem; max-width: 100%; }
+  footer .inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 11px; color: var(--slate); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">OSF × Hike</span>
+  <div class="nav-links">
+    <a href="#insights">Overview</a>
+    <a href="#performance">May</a>
+    <a href="#june">June</a>
+    <a href="#action-items">Action Items</a>
+    <a href="#discussion">Discussion</a>
+  </div>
+</nav>
+
+<!-- TITLE -->
+<section id="title">
+  <div class="inner">
+    <div class="tag">OSF × Hike</div>
+    <h1>Monthly Partnership Update</h1>
+    <p class="sub">May 2026 in review, with a mid-June preview, annual action items, and Q3 planning.</p>
+    <p class="prepared">Prepared for OSF Benefits Leadership · June 2026</p>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="eyebrow">The month in one read</div>
+  <h2 class="section-title">A quiet month, lifted by one onsite and returning members.</h2>
+  <p class="section-sub">Three things to take away before the numbers.</p>
+
+  <div class="insight-stack">
+
+    <div class="insight-card">
+      <div class="insight-icon">
+        <!-- chart icon -->
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,14 7,8 11,11 17,4" stroke="#1F6FEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="2,18 18,18" stroke="#1F6FEB" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="insight-head blue">Volume settled, as expected.</div>
+        <div class="insight-body">171 orders in May, down from the Q1 surge. May falls in the Q2 rest between the Q1 and Q3 campaigns we set at the annual review. The month tracked to plan.</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">
+        <!-- pin icon -->
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 2C7.24 2 5 4.24 5 7c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5z" fill="#1F9D6B"/><circle cx="10" cy="7" r="2" fill="white"/></svg>
+      </div>
+      <div>
+        <div class="insight-head green">One onsite drove most of the month.</div>
+        <div class="insight-body">The May 26 onsite at Saint Francis produced 52 scans in one day against a 3-per-day baseline. The final week around the event accounted for nearly half of May's orders.</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">
+        <!-- redo icon -->
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 3.5A7 7 0 1 1 6 13" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round"/><polyline points="13,1 14,4 17,3" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="insight-head green">Returning members are a growing share.</div>
+        <div class="insight-body">48 of the 170 members who ordered in May (28%) also ordered in 2025. Members come back when the first pair works, which is the outcome the program is built to produce.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAY PERFORMANCE -->
+<section id="performance">
+  <div class="eyebrow">May 2026 performance</div>
+  <h2 class="section-title">Engaged, activated, and where it landed.</h2>
+
+  <div class="perf-grid">
+
+    <!-- left: funnel + mini stats -->
+    <div>
+      <div class="funnel">
+
+        <div class="funnel-row">
+          <svg viewBox="0 0 20 20" fill="#1F6FEB" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;margin-top:14px"><path d="M13 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM18 16a8 8 0 1 0-16 0h16z"/></svg>
+          <div>
+            <div class="funnel-label">Engaged (scans) <span>members who scanned</span></div>
+            <div class="bar-track">
+              <div class="bar-fill bar-blue" style="width:100%"><span>178</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel-row">
+          <svg viewBox="0 0 20 20" fill="#1F9D6B" xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;margin-top:14px"><path d="M3 3h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 3v8h12V6H4z"/></svg>
+          <div>
+            <div class="funnel-label">Activated (ordered) <span>insoles ordered</span></div>
+            <div class="bar-track">
+              <div class="bar-fill bar-green" style="width:96%"><span>171</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-card">
+          <div class="mini-num">48</div>
+          <div class="mini-label">Returning members</div>
+          <div class="mini-sub">Ordered in 2025 and 2026</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-num">52</div>
+          <div class="mini-label">Scans on May 26</div>
+          <div class="mini-sub">SFMC onsite, one day</div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-num amber">5,153</div>
+          <div class="mini-label">Renewal eligible</div>
+          <div class="mini-sub">Ordered 12+ mo ago, not back yet</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: sparkline + facilities -->
+    <div>
+      <div class="chart-label">Monthly orders: Q1 surge, Q2 rest</div>
+      <div class="chart-wrap">
+        <svg class="sparkline" viewBox="0 0 280 120" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="grd" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1F6FEB" stop-opacity=".15"/>
+              <stop offset="100%" stop-color="#1F6FEB" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- values: 126,215,867,686,987,476,671,181,171,49 → mapped to 0-987 → y inverted 0-110 -->
+          <!-- x positions: 0..9 mapped to 0..280 in steps of ~31 -->
+          <polygon
+            points="0,105 31,96 62,14 93,35 124,0 155,57 186,25 217,95 248,96 279,115"
+            fill="url(#grd)" stroke="none"/>
+          <polyline
+            points="0,105 31,96 62,14 93,35 124,0 155,57 186,25 217,95 248,96 279,115"
+            fill="none" stroke="#1F6FEB" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- dots -->
+          <circle cx="0"   cy="105" r="3.5" fill="#1F6FEB"/>
+          <circle cx="31"  cy="96"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="62"  cy="14"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="93"  cy="35"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="124" cy="0"   r="3.5" fill="#1F6FEB"/>
+          <circle cx="155" cy="57"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="186" cy="25"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="217" cy="95"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="248" cy="96"  r="3.5" fill="#1F6FEB"/>
+          <circle cx="279" cy="115" r="3.5" fill="#1F6FEB"/>
+          <!-- x labels -->
+          <text x="0"   y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Sep</text>
+          <text x="31"  y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Oct</text>
+          <text x="62"  y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Nov</text>
+          <text x="93"  y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Dec</text>
+          <text x="124" y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Jan</text>
+          <text x="155" y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Feb</text>
+          <text x="186" y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Mar</text>
+          <text x="217" y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Apr</text>
+          <text x="248" y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">May</text>
+          <text x="279" y="120" fill="#5B6675" font-size="8" text-anchor="middle" font-family="Inter,sans-serif">Jun*</text>
+        </svg>
+      </div>
+      <p class="chart-note">*June month-to-date (through the 15th).</p>
+
+      <div class="fac-label">Top facilities · May orders</div>
+      <div class="fac-row">
+        <div class="fac-name">OSF St. Francis Med Center</div>
+        <div class="fac-bar-wrap"><div class="fac-bar" style="width:100%"></div></div>
+        <div class="fac-val">61</div>
+      </div>
+      <div class="fac-row">
+        <div class="fac-name">Peoria SFMC</div>
+        <div class="fac-bar-wrap"><div class="fac-bar" style="width:87%"></div></div>
+        <div class="fac-val">53</div>
+      </div>
+      <div class="fac-row">
+        <div class="fac-name">OSF Multi-Specialty Grp</div>
+        <div class="fac-bar-wrap"><div class="fac-bar" style="width:39%"></div></div>
+        <div class="fac-val">24</div>
+      </div>
+      <div class="fac-row">
+        <div class="fac-name">Ministry Services</div>
+        <div class="fac-bar-wrap"><div class="fac-bar" style="width:26%"></div></div>
+        <div class="fac-val">16</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JUNE PREVIEW -->
+<section id="june">
+  <div class="eyebrow">Mid-June preview</div>
+  <h2 class="section-title">June to date: on pace, same shape as May.</h2>
+  <p class="section-sub">Through June 15, about half the month. Directional, not final.</p>
+
+  <div class="june-grid">
+    <div class="june-card">
+      <div class="june-icon">
+        <svg viewBox="0 0 20 20" fill="#1F6FEB" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM18 16a8 8 0 1 0-16 0h16z"/></svg>
+      </div>
+      <div class="june-num">301</div>
+      <div class="june-lbl">Members enrolled</div>
+      <div class="june-sub">Near May's pace</div>
+    </div>
+    <div class="june-card">
+      <div class="june-icon">
+        <svg viewBox="0 0 20 20" fill="#1F6FEB" xmlns="http://www.w3.org/2000/svg"><ellipse cx="7" cy="14" rx="4" ry="2.5" stroke="#1F6FEB" stroke-width="1.5" fill="none"/><ellipse cx="13" cy="14" rx="4" ry="2.5" stroke="#1F6FEB" stroke-width="1.5" fill="none"/><rect x="5" y="7" width="4" height="5" rx="1" fill="#1F6FEB"/><rect x="11" y="7" width="4" height="5" rx="1" fill="#1F6FEB"/></svg>
+      </div>
+      <div class="june-num">46</div>
+      <div class="june-lbl">Engaged (scans)</div>
+    </div>
+    <div class="june-card">
+      <div class="june-icon">
+        <svg viewBox="0 0 20 20" fill="#1F6FEB" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 3v8h12V6H4z"/></svg>
+      </div>
+      <div class="june-num">46</div>
+      <div class="june-lbl">Activated (ordered)</div>
+    </div>
+    <div class="june-card">
+      <div class="june-icon">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 3.5A7 7 0 1 1 6 13" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round"/><polyline points="13,1 14,4 17,3" stroke="#1F9D6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="june-num">18</div>
+      <div class="june-lbl">Returning members</div>
+      <div class="june-sub">39% of June orderers</div>
+    </div>
+  </div>
+
+  <div class="june-note">
+    June is opening like May: steady, between campaigns, with returning members an even larger share. The baseline lifts once the Q3 campaign launches.
+  </div>
+</section>
+
+<!-- ACTION ITEMS -->
+<section id="action-items">
+  <div class="eyebrow">Annual review follow-through</div>
+  <h2 class="section-title">Where the action items from the annual review stand.</h2>
+  <p class="section-sub">The commitments from the annual review, with current status.</p>
+
+  <div class="action-stack">
+
+    <div class="action-row">
+      <div class="action-title">Named owner on OSF</div>
+      <div class="status-chip status-done">Done</div>
+      <div class="action-detail">Zack DiMaggio is your dedicated Client Success Lead as of June 15. This monthly check-in is the cadence we committed to.</div>
+    </div>
+
+    <div class="action-row">
+      <div class="action-title">Increase survey engagement</div>
+      <div class="status-chip status-progress">In progress</div>
+      <div class="action-detail">The annual survey returned 69 responses from 8,232 sent. A new survey is in field, and we are testing in-flow prompts and a small incentive to raise the response rate.</div>
+    </div>
+
+    <div class="action-row">
+      <div class="action-title">Onsite strategy refresh</div>
+      <div class="status-chip status-underway">Underway</div>
+      <div class="action-detail">The May 26 SFMC onsite confirmed the approach: 52 scans in one day. The summer plan runs five hospital waves (SFMC Peoria first, July 7–9) with clinic pop-ups attached to each trip, ranked by expected orders per onsite hour. Wave 1 pitch starts this week.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DISCUSSION -->
+<section id="discussion">
+  <div class="eyebrow">For discussion</div>
+  <h2 class="section-title">Two things we'd like OSF's input on.</h2>
+
+  <div class="discussion-grid">
+
+    <!-- Survey -->
+    <div class="disc-card light">
+      <div class="disc-header">
+        <div class="disc-icon">
+          <svg viewBox="0 0 20 20" fill="#1F6FEB" xmlns="http://www.w3.org/2000/svg"><path d="M18 10c0 4.418-3.582 8-8 8S2 14.418 2 10 5.582 2 10 2s8 3.582 8 8zM9 7h2V5H9v2zm0 8h2V9H9v6z"/></svg>
+        </div>
+        <div class="disc-title">Lifting survey engagement</div>
+      </div>
+      <p class="disc-body">The annual survey returned 69 responses from 8,232 sent. That reads overall sentiment but is too thin to segment by site, role, or tenure. Segmented outcomes are what strengthen the Q4 ROI review.</p>
+      <div class="disc-q-label">Open question for OSF</div>
+      <ul class="disc-qs">
+        <li>Would in-flow prompts at delivery, onsites, and the 6- and 12-month marks work better than a standalone survey?</li>
+        <li>Is a small participation incentive acceptable within OSF guidelines?</li>
+        <li>What response rate would OSF consider credible for outcomes reporting?</li>
+      </ul>
+    </div>
+
+    <!-- Q3 -->
+    <div class="disc-card dark">
+      <div class="disc-header">
+        <div class="disc-icon dk">
+          <svg viewBox="0 0 20 20" fill="#8FB4F0" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="14" height="13" rx="1" stroke="#8FB4F0" stroke-width="1.5" fill="none"/><path d="M7 2v4M13 2v4M3 9h14" stroke="#8FB4F0" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="disc-title white">Summer onsite plan</div>
+      </div>
+      <p class="disc-body light-text">The summer onsite plan is drafted and ranked. A few decisions need OSF to move.</p>
+      <div class="disc-q-label light">Open question for OSF</div>
+      <ul class="disc-qs light-qs">
+        <li>The summer plan starts at SFMC Peoria (July 7–9) and runs five hospital waves through August. Can OSF confirm site contacts and internal comms windows for each wave?</li>
+        <li>Each site has a Patient Care Services lead intro as a key ask. Can OSF facilitate those introductions ahead of Wave 1?</li>
+        <li>Should SFMC get a second event week if July 7–9 traffic warrants it?</li>
+        <li>We want to prompt for survey responses at onsites. Is there a preferred format, and is a small incentive acceptable within OSF guidelines?</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <p>Hike × OSF · Monthly Update · May 2026</p>
+    <p>Prepared for OSF Benefits Leadership · June 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
